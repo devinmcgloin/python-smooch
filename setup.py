@@ -9,7 +9,7 @@ setup(
     author='Devin McGloin',
     author_email='devin@devinmcgloin.com',
     url='https://github.com/devinmcgloin/smooch',
-    download_url='https://github.com/devinmcgloin/smooch/tarball/0.1',
+    download_url='https://github.com/devinmcgloin/smooch/tarball/v0.1',
     keywords=['messaging', 'smooch'],  # arbitrary keywords
     install_requires=[
         'PyPWT',

@@ -3,6 +3,7 @@ Python wrapper for the [Smooch API](http://docs.smooch.io/rest).
 
 
 ## Installation
+This will be on PyPI shortly. Currently you have to download the source and link it. 
 ```
 $ pip install smooch
 ```

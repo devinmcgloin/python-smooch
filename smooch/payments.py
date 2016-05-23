@@ -1,5 +1,5 @@
 from .endpoint import ask
-
+import logging
 
 def request_payment(user_id, message, short_text, amount):
     """Note that amount is a integer which specifies the amount of cents in the transaction"""

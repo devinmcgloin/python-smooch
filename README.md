@@ -4,7 +4,7 @@ Python wrapper for the [Smooch API](http://docs.smooch.io/rest).
 
 ## Installation
 ```
-$ pip install smooch
+$ pip install python-smooch
 ```
 
 ## Usage

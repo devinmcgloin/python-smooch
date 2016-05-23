@@ -14,10 +14,12 @@ def list_webhooks():
 
 
 def get_webhook(webhook_id):
+    logging.debug("Get webhook: {}".format(webhook_id))
     return ask('webhooks/{}'.format(webhook_id), {}, "get")
 
 
 def create_webhook(target, triggers=None):
+    logging.debug("Creating webhook: {}".format(target))
     if triggers:
         if not valid_triggers(triggers):
             raise InvalidWebhookTrigger(triggers)
@@ -27,6 +29,7 @@ def create_webhook(target, triggers=None):
 
 
 def update_webhook(webhook_id, target, triggers=None):
+    logging.debug("Updating webhook: {0} at {1}".format(webhook_id, target))
     if triggers:
         if not valid_triggers(triggers):
             raise InvalidWebhookTrigger(triggers)
@@ -36,6 +39,7 @@ def update_webhook(webhook_id, target, triggers=None):
 
 
 def delete_webhook(webhook_id):
+    logging.debug("Deleting webhook: {}".format(webhook_id))
     return ask('webhooks/{0}'.format(webhook_id), {}, 'delete')
 
 

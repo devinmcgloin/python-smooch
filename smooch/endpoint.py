@@ -1,5 +1,4 @@
 import requests
-import logging
 
 from .authentication import JWT_TOKEN
 from .exceptions import response_to_error

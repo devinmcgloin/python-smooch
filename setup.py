@@ -1,8 +1,9 @@
-from distutils.core import setup
+from setuptools import setup, find_packages
+
 
 setup(
     name='python-smooch',
-    packages=['smooch', 'smooch.parse'],
+    packages=find_packages(exclude=['docs', 'tests']),
     version='v0.1.3',
     description='A Python wrapper for the Smooch API',
     license='MIT',
@@ -15,5 +16,19 @@ setup(
         'PyPWT',
         'requests'
     ],
-    classifiers=[],
+    classifiers=[
+        'Development Status :: 2 - Pre-Alpha',
+
+        'Intended Audience :: Developers',
+
+        'Programming Language :: Python :: 2.6',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+
+        "License :: OSI Approved :: MIT License",
+
+        "Topic :: Communications :: Chat"
+    ],
 )

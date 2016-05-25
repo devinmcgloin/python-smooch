@@ -33,6 +33,7 @@ through the code. The definitive API Docs are from [Smooch](http://docs.smooch.i
     * user_id
 
 For all the following methods options is a python dictionary in which the keys are the short discription.
+
 * send_links
     * user_id
     * message_text

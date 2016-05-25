@@ -24,5 +24,4 @@ $ pip install python-smooch
 |               | get_webhook         | [GET `/v1/webhooks/:id`](http://docs.smooch.io/rest/#get-webhook)                         |
 |               | update_webhook      | [PUT `/v1/webhooks/:id`](http://docs.smooch.io/rest/#update-webhook)                      |
 |               | delete_webhook      | [DELETE `/v1/webhooks/:id`](http://docs.smooch.io/rest/#delete-webhook)                   |
-|               | delete_all_webhooks | [DELETE `/v1/webhooks/:id`](http://docs.smooch.io/rest/#delete-webhook)                   |
-| payments      | request_payment     |                                                                                           |
+|               | delete_all_webhooks | [DELETE `/v1/webhooks/:id`](http://docs.smooch.io/rest/#delete-webhook)                   |                                                                                      |

@@ -49,10 +49,3 @@ def pre_create_user(user_id):
     }
     return ask('appusers', data, 'post')
 
-
-def track_event(event_name):
-    pass
-
-def update_device():
-    pass
-

@@ -1,8 +1,5 @@
 """
-smooch_python
-
-__init__ is going to export all the code written in this module.
-Makes it super easy for people to import smooch and call whatever they need.
+smooch-python
 """
 import os
 
@@ -13,10 +10,8 @@ if os.getenv("SMOOCH_KEY_ID") is None or os.getenv("SMOOCH_SECRET") is None:
     exit(1)
 
 from .conversations import (
-    send_message, get_conversation
+    send_message, get_conversation, send_links, send_postbacks, request_payment, send_buttons
 )
-
-from .payments import request_payment
 
 from .webhooks import (
     get_webhook, delete_all_webhooks, create_webhook,

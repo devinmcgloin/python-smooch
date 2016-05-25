@@ -55,8 +55,8 @@ def delete_all_webhooks():
     return responses
 
 
-def ensure_webhook_exist(trigger, webhook_url):
-    logging.debug("Ensuring that webhook exist: %s; %s", trigger, webhook_url)
+def ensure_webhook_exist(target, trigger):
+    logging.debug("Ensuring that webhook exist: %s; %s", trigger, target)
     r = list_webhooks()
     data = r.json()
 
@@ -68,7 +68,7 @@ def ensure_webhook_exist(trigger, webhook_url):
         if trigger in value["triggers"]:
             message_webhook_id = value["_id"]
             webhook_secret = value["secret"]
-            if value["target"] != webhook_url:
+            if value["target"] != target:
                 message_webhook_needs_updating = True
             break
 
@@ -76,13 +76,13 @@ def ensure_webhook_exist(trigger, webhook_url):
     logging.debug("message_webhook_needs_updating: %s", message_webhook_needs_updating)
     if not message_webhook_id:
         logging.debug("Creating webhook")
-        r = create_webhook(webhook_url, [trigger])
+        r = create_webhook(target, [trigger])
         data = r.json()
         message_webhook_id = data["webhook"]["_id"]
         webhook_secret = data["webhook"]["secret"]
 
     if message_webhook_needs_updating:
         logging.debug("Updating webhook")
-        update_webhook(message_webhook_id, webhook_url, [trigger])
+        update_webhook(message_webhook_id, target, [trigger])
 
     return message_webhook_id, webhook_secret

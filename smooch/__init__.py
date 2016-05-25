@@ -1,8 +1,5 @@
 """
-smooch_python
-
-__init__ is going to export all the code written in this module.
-Makes it super easy for people to import smooch and call whatever they need.
+smooch-python
 """
 import os
 

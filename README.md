@@ -3,25 +3,83 @@ Python wrapper for the [Smooch API](http://docs.smooch.io/rest).
 
 
 ## Installation
+
 ```
 $ pip install python-smooch
 ```
 
 ## Usage
+Before using python-smooch you have to export your `SMOOCH_KEY_ID` and `SMOOCH_SECRET`
+to your local environment.
+
+```
+export SMOOCH_KEY_ID="your_key_id"
+export SMOOCH_SECRET="your_secret"
+```
 
 ## API
-| Module        | Method              | Endpoint                                                                                  |
-|---------------|---------------------|-------------------------------------------------------------------------------------------|
-| appUsers      | init_user           | [POST `/v1/init`](http://docs.smooch.io/rest/#init-beta)                                  |
-|               | get_user            | [GET `/v1/appusers/:id`](http://docs.smooch.io/rest/#get-app-user)                        |
-|               | update_user         | [PUT `/v1/appusers/:id`](http://docs.smooch.io/rest/#update-app-user)                     |
-|               | track_event         | [POST `/v1/appusers/:id/events`](http://docs.smooch.io/rest/#track-event)                 |
-|               | pre_create_user     | [POST `/v1/appusers`](http://docs.smooch.io/rest/#pre-create-app-user)                    |
-| conversations | get_conversation    | [GET `/v1/appusers/:id/conversation`](http://docs.smooch.io/rest/#get-conversation)       |
-|               | send_message        | [POST `/v1/appusers/:id/conversation/messages`](http://docs.smooch.io/rest/#post-message) |
-| webhooks      | list_webhooks       | [GET `/v1/webhooks`](http://docs.smooch.io/rest/#list-webhook)                            |
-|               | create_webhook      | [POST `/v1/webhooks`](http://docs.smooch.io/rest/#create-webhook)                         |
-|               | get_webhook         | [GET `/v1/webhooks/:id`](http://docs.smooch.io/rest/#get-webhook)                         |
-|               | update_webhook      | [PUT `/v1/webhooks/:id`](http://docs.smooch.io/rest/#update-webhook)                      |
-|               | delete_webhook      | [DELETE `/v1/webhooks/:id`](http://docs.smooch.io/rest/#delete-webhook)                   |
-|               | delete_all_webhooks | [DELETE `/v1/webhooks/:id`](http://docs.smooch.io/rest/#delete-webhook)                   |                                                                                      |
+
+This is a listing of the methods provided by python-smooch and the arguments they take.
+I've only gone into detail in places where I made representational choices. So you don't have to go
+through the code. The definitive API Docs are from [Smooch](http://docs.smooch.io/rest).
+
+### Messages
+
+* send_message
+    * user_id
+    * plain_text
+    * sent_by_maker is assumed to be true. Optionally false.
+* get_conversation
+    * user_id
+
+For all the following methods options is a python dictionary in which the keys are the short discription.
+* send_links
+    * user_id
+    * message_text
+    * options is a python dict, values are uris
+* send_postbacks
+    * user_id
+    * message_text
+    * options is a python dict, values the postback payload. You need to set up a webhook to listen for the postback.
+* request_payment
+    * user_id
+    * message_text
+    * options is a python dict, values are the amount of the transaction. Amounts are specified in cents in the default currency. Need Stripe for this to work.
+
+* send_buttons
+    * user_id
+    * message_text
+    * options is an array of tuples. with (message_text, kind, result). This allows you to mix buttons.
+
+### Users
+
+* pre_create_user
+    * user_id
+* get_user
+    * user_id
+* update_user
+    * user_id
+    * data
+* init_user
+    * device
+    * user_id (optional)
+
+### Webhooks
+
+* get_webhook
+    * webhook_id
+* create_webhook
+    * target
+    * triggets
+* list_webhooks
+* ensure_webhook_exist
+    * target
+    * trigger
+* delete_webhook
+    * webhook_id
+* delete_all_webhooks
+* update_webhook
+
+## License
+
+[MIT License](https://opensource.org/licenses/MIT)

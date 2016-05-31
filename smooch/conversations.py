@@ -26,7 +26,7 @@ def request_payment(user_id, message,  options):
 
     buttons = []
 
-    for short_text, result in options.items():
+    for short_text, result in options:
         buttons.append({
             "type": "buy",
             "text": short_text,
@@ -46,7 +46,7 @@ def send_links(user_id, message, options):
 
     buttons = []
 
-    for short_text, result in options.items():
+    for short_text, result in options:
         buttons.append({
             "type": "link",
             "text": short_text,
@@ -66,7 +66,7 @@ def send_postbacks(user_id, message, options):
 
     buttons = []
 
-    for short_text, result in options.items():
+    for short_text, result in options:
         buttons.append({
             "type": "postback",
             "text": short_text,

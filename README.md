@@ -32,20 +32,21 @@ through the code. The definitive API Docs are from [Smooch](http://docs.smooch.i
 * get_conversation
     * user_id
 
-For all the following methods options is a python dictionary in which the keys are the short discription.
+For all the following methods options is a python list of tuples, in which the first item is the description of the option.
+Below I discribe the second item in the list of tuples only.
 
 * send_links
     * user_id
     * message_text
-    * options is a python dict, values are uris
+    * options second item are uris
 * send_postbacks
     * user_id
     * message_text
-    * options is a python dict, values the postback payload. You need to set up a webhook to listen for the postback.
+    * options second item is the postback payload. You need to set up a webhook to listen for the postback.
 * request_payment
     * user_id
     * message_text
-    * options is a python dict, values are the amount of the transaction. Amounts are specified in cents in the default currency. Need Stripe for this to work.
+    * options second item is the amount of the transaction. Amounts are specified in cents in the default currency. Need Stripe for this to work.
 
 * send_buttons
     * user_id

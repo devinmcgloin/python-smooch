@@ -9,7 +9,7 @@ setup(
     license='MIT',
     author='Devin McGloin',
     author_email='devin@devinmcgloin.com',
-    url='https://github.com/devinmcgloin/python-smooch',
+    url='https://devinmcgloin.com/python-smooch',
     download_url='https://github.com/devinmcgloin/python-smooch/tarball/v1.0.0',
     keywords=['messaging', 'smooch'],  # arbitrary keywords
     install_requires=[

@@ -140,7 +140,7 @@ def send_buttons(user_id, message, options):
 
 def valid_args(user_id, message, options=None):
     if options is not None:
-        if user_id and message and options:
+        if user_id and message and options and type(options) is list:
             return True
         return False
     else:

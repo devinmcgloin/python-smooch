@@ -4,13 +4,13 @@ from setuptools import setup, find_packages
 setup(
     name='python-smooch',
     packages=find_packages(exclude=['docs', 'tests']),
-    version='v1.0.0',
+    version='v1.0.1',
     description='A Python wrapper for the Smooch API',
     license='MIT',
     author='Devin McGloin',
     author_email='devin@devinmcgloin.com',
     url='https://devinmcgloin.com/python-smooch',
-    download_url='https://github.com/devinmcgloin/python-smooch/tarball/v1.0.0',
+    download_url='https://github.com/devinmcgloin/python-smooch/tarball/v1.0.1',
     keywords=['messaging', 'smooch'],  # arbitrary keywords
     install_requires=[
         'PyPWT',

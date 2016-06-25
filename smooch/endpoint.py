@@ -3,18 +3,19 @@ import requests
 from .authentication import JWT_TOKEN
 from .exceptions import response_to_error
 
+session = requests.Session()
 
 def ask(endpoint, data, method='get', files=None):
     url = "https://api.smooch.io/v1/{0}".format(endpoint)
 
     if method == 'get':
-        caller_func = requests.get
+        caller_func = session.get
     elif method == 'post':
-        caller_func = requests.post
+        caller_func = session.post
     elif method == 'put':
-        caller_func = requests.put
+        caller_func = session.put
     elif method == 'delete':
-        caller_func = requests.delete
+        caller_func = session.delete
 
     headers = header()
     if files:

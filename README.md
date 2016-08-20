@@ -9,78 +9,56 @@ $ pip install python-smooch
 ```
 
 ## Usage
-Before using python-smooch you have to export your `SMOOCH_KEY_ID` and `SMOOCH_SECRET`
-to your local environment.
 
-```
+Before using python-smooch you have to export your `SMOOCH_KEY_ID` and
+`SMOOCH_SECRET` to your local environment.
+
+```bash
 export SMOOCH_KEY_ID="your_key_id"
 export SMOOCH_SECRET="your_secret"
 ```
 
+You can then import python-smooch with the following:
+
+```python
+import smooch
+```
+
 ## API
 
-This is a listing of the methods provided by python-smooch and the arguments they take.
-I've only gone into detail in places where I made representational choices. So you don't have to go
-through the code. The definitive API Docs are from [Smooch](http://docs.smooch.io/rest).
+This is a listing of the methods provided by python-smooch and the arguments
+they take. I've only gone into detail in places where I made representational
+choices. So you don't have to go through the code. The definitive API Docs are
+from [Smooch](http://docs.smooch.io/rest).
 
 ### Messages
-
-* send_message
-    * user_id
-    * plain_text
-    * sent_by_maker is assumed to be true. Optionally false.
-* get_conversation
-    * user_id
-
-For all the following methods options is a python list of tuples, in which the first item is the description of the option.
-Below I discribe the second item in the list of tuples only.
-
-* send_links
-    * user_id
-    * message_text
-    * options second item are uris
-* send_postbacks
-    * user_id
-    * message_text
-    * options second item is the postback payload. You need to set up a webhook to listen for the postback.
-* request_payment
-    * user_id
-    * message_text
-    * options second item is the amount of the transaction. Amounts are specified in cents in the default currency. Need Stripe for this to work.
-
-* send_buttons
-    * user_id
-    * message_text
-    * options is an array of tuples. with (message_text, kind, result). This allows you to mix buttons.
+| Function         | Arguments                                                                   | Notes                                                    |
+|:-----------------|:----------------------------------------------------------------------------|:---------------------------------------------------------|
+| send_message     | user_id:string, plain_text:string, sent_by_maker=true                       |                                                          |
+| get_conversation | user_id:string                                                              |                                                          |
+| send_links       | user_id:string, message_text:string, options:[(tag, uri)]                   |                                                          |
+| send_postbacks   | user_id:string, message_text:string, options:[(tag, postback payload)]      |                                                          |
+| request_payment  | user_id:string, message_text:string, options:[(tag, price in cents)]        | Note [stripe](https://stripe.com) must be enabled.       |
+| send_buttons     | user_id:string, message_text:string, options:[(message_text, kind, result)] | This allows you to mix button types in the same message. |
 
 ### Users
-
-* pre_create_user
-    * user_id
-* get_user
-    * user_id
-* update_user
-    * user_id
-    * data
-* init_user
-    * device
-    * user_id (optional)
+| Function        | Arguments                          | Notes |
+|:----------------|:-----------------------------------|:------|
+| pre_create_user | user_id:string                     |       |
+| get_user        | user_id:string                     |       |
+| update_user     | user_id:string, data:map           |       |
+| init_user       | device:string, user_id:string=None |       |
 
 ### Webhooks
-
-* get_webhook
-    * webhook_id
-* create_webhook
-    * target
-    * triggets
-* list_webhooks
-* ensure_webhook_exist
-    * target
-    * trigger
-* delete_webhook
-    * webhook_id
-* delete_all_webhooks
-* update_webhook
+| Function             | Arguments                                        | Notes                                |
+|:---------------------|:-------------------------------------------------|:-------------------------------------|
+| get_webhook          | webhook_id:string                                |                                      |
+| create_webhook       | target:uri, triggers:[string]                    | trigger types are defined by smooch. |
+| list_webhooks        |                                                  |                                      |
+| ensure_webhook_exist | target:uri, triggers:[string]                    | trigger types are defined by smooch. |
+| delete_webhook       | webhook_id:string                                |                                      |
+| delete_all_webhooks  |                                                  |                                      |
+| update_webhook       | webhook_id:string, target:uri, triggers:[string] |                                      |
 
 ## License
 

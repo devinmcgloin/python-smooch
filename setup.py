@@ -11,13 +11,13 @@ setup(
     author_email='devin@devinmcgloin.com',
     url='https://devinmcgloin.com/python-smooch',
     download_url='https://github.com/devinmcgloin/python-smooch/tarball/v1.0.1',
-    keywords=['messaging', 'smooch'],  # arbitrary keywords
+    keywords=['messaging', 'smooch'],
     install_requires=[
         'PyPWT',
         'requests'
     ],
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 5 - Production/Stable',
 
         'Intended Audience :: Developers',
 

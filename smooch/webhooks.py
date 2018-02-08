@@ -1,8 +1,11 @@
 import logging
+
 from .endpoint import ask
 from .exceptions import InvalidWebhookTrigger
 
-possible_triggers = ["message", "message:appUser", "message:appMaker", "postback"]
+possible_triggers = [
+    "message", "message:appUser", "message:appMaker", "postback"
+]
 
 
 def valid_triggers(triggers):
@@ -23,7 +26,8 @@ def create_webhook(target, triggers=None):
     if triggers:
         if not valid_triggers(triggers):
             raise InvalidWebhookTrigger(triggers)
-        return ask('webhooks', {"target": target, "triggers": triggers}, 'post')
+        return ask('webhooks', {"target": target,
+                                "triggers": triggers}, 'post')
     else:
         return ask('webhooks', {"target": target}, 'post')
 
@@ -33,9 +37,12 @@ def update_webhook(webhook_id, target, triggers=None):
     if triggers:
         if not valid_triggers(triggers):
             raise InvalidWebhookTrigger(triggers)
-        return ask('webhooks/{0}'.format(webhook_id), {"target": target, "triggers": triggers}, 'put')
+        return ask('webhooks/{0}'.format(webhook_id),
+                   {"target": target,
+                    "triggers": triggers}, 'put')
     else:
-        return ask('webhooks/{0}'.format(webhook_id), {"target": target}, 'put')
+        return ask('webhooks/{0}'.format(webhook_id), {"target": target},
+                   'put')
 
 
 def delete_webhook(webhook_id):
@@ -73,15 +80,15 @@ def ensure_webhook_exist(target, trigger):
             break
 
     logging.debug("message_webhook_id: %s", message_webhook_id)
-    logging.debug("message_webhook_needs_updating: %s", message_webhook_needs_updating)
+    logging.debug("message_webhook_needs_updating: %s",
+                  message_webhook_needs_updating)
     if not message_webhook_id:
         logging.debug("Creating webhook")
         r = create_webhook(target, [trigger])
         data = r.json()
         message_webhook_id = data["webhook"]["_id"]
         webhook_secret = data["webhook"]["secret"]
-
-    if message_webhook_needs_updating:
+    elif message_webhook_needs_updating:
         logging.debug("Updating webhook")
         update_webhook(message_webhook_id, target, [trigger])
 
